@@ -6,10 +6,10 @@ export default function App({ Component, pageProps }) {
   const theme = useTheme();
 
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
+    <Layout>
+      <ThemeProvider theme={theme}>
         <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Layout>
   );
 }
