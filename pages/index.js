@@ -64,7 +64,7 @@ export default function Home() {
               <Fade in={true} timeout={{ enter: 1000 }}>
                 <Stack direction="column" spacing={1}>
                   <Typography variant='overline'>THE NEW TRANSFORMATION</Typography>
-                  <Typography variant='h3'>We built system that solve UMP student missing parcel problem</Typography>
+                  <Typography variant={'h3'}>We built system that solve UMP student missing parcel problem</Typography>
                   <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <Button endIcon={<NavigateNextIcon />} sx={{ width: "fit-content" }} onClick={() => user ? router.push("/request") : setOpen(true)}>Request for Parcel Pickup</Button>
                   </Box>
@@ -73,25 +73,47 @@ export default function Home() {
             </Box>
           </Slide>
         </Box>
-      <Box sx={{ mt: 15, mb: 10, display: "flex", flexDirection: "column", alignItems: "center", mx: mobile ? 5 : "none" }}>
-          <Stack direction={mobile ? "column" : "row"} spacing={mobile ? 4 : 10}>
-            <Paper elevation={3} sx={{ px: 3, py: 3, width: 300 }}>
-              <LockIcon color='primary' sx={{ fontSize: 30 }} />
+        <Box sx={{ mt: mobile ? 8 : 15, mb: 10, display: "flex", flexDirection: "column", alignItems: "center", mx: mobile ? 3 : "none" }}>
+          <Stack direction={mobile ? "column" : "row"} spacing={mobile ? 3 : 5}>
+            <Box sx={{ px: 3, py: 3, width: 300 }}>
+              <LockIcon color='primary' sx={{ fontSize: 30, mr: 2 }} />
               <Typography variant='h6'>Secure</Typography>
               <Typography variant='subtitle1'>Your parcel will be safe with our services</Typography>
-            </Paper>
-            <Paper elevation={3} sx={{ px: 3, py: 3, width: 300 }}>
+            </Box>
+            <Box sx={{ px: 3, py: 3, width: 300 }}>
               <FastForwardIcon color='primary' sx={{ fontSize: 30 }} />
               <Typography variant='h6'>Faster</Typography>
               <Typography variant='subtitle1'>Your parcel will be in front of your residence door</Typography>
-            </Paper>
-            <Paper elevation={3} sx={{ px: 3, py: 3, width: 300 }}>
+            </Box>
+            <Box sx={{ px: 3, py: 3, width: 300 }}>
               <AccessibilityIcon color='primary' sx={{ fontSize: 30 }} />
               <Typography variant='h6'>Accessible</Typography>
               <Typography variant='subtitle1'>Our services easily to access everywhere and everytime</Typography>
-            </Paper>
+            </Box>
           </Stack>
         </Box>
+        {/* <Box sx={{ mt: 13 }}>
+          <Box sx={{ textAlign: "center" }}>
+            <Typography variant='h4' fontWeight={500}>Our plan</Typography>
+            <Typography variant='h5' sx={{ color: "gray" }}>Choose one of our services for you</Typography>
+          </Box>
+          <Box sx={{ mt: 5 }}>
+            <Paper elevetion={3}>
+              <Box sx={{ textAlign: "center" }}>
+                <Typography variant="h5">Parcel to UMP</Typography>
+                <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                  <Stack direction={"row"} spacing={2}>
+                    <Typography variant='h3'>$2</Typography>
+                    <Typography variant='h6' sx={{ color: "grey" }}>/Parcel</Typography>
+                  </Stack>
+                </Box>
+              </Box>
+            </Paper>
+            <Paper elevetion={3}>
+
+            </Paper>
+          </Box>
+        </Box> */}
       </Box>
       <LoginPopup open={open} setOpen={setOpen} />
     </div>
