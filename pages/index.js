@@ -64,7 +64,7 @@ export default function Home() {
               <Fade in={true} timeout={{ enter: 1000 }}>
                 <Stack direction="column" spacing={1}>
                   <Typography variant='overline'>THE NEW TRANSFORMATION</Typography>
-                  <Typography variant='h3'>We've built system that solve UMP student missing parcel problem</Typography>
+                  <Typography variant='h3'>We built system that solve UMP student missing parcel problem</Typography>
                   <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <Button endIcon={<NavigateNextIcon />} sx={{ width: "fit-content" }} onClick={() => user ? router.push("/request") : setOpen(true)}>Request for Parcel Pickup</Button>
                   </Box>
