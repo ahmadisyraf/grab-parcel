@@ -16,6 +16,8 @@
     "@mui/material": "^5.11.2",
     "@mui/x-date-pickers": "^5.0.12",
     "@next/font": "13.1.1",
+    "@stripe/stripe-js": "^1.46.0",
+    "axios": "^1.2.2",
     "dayjs": "^1.11.7",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",

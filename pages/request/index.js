@@ -9,18 +9,60 @@ import { useRouter } from "next/router";
 import { Slide, Fade } from "@mui/material";
 
 import { useTheme, useMediaQuery } from "@mui/material";
+
+import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
+
 export default function Request() {
 
     const [value, setValue] = useState(dayjs('2022-04-07'));
     const theme = useTheme();
     const mobile = useMediaQuery(theme.breakpoints.down('md'));
     const router = useRouter();
+    const [api, setApi] = useState(`/api/checkout_sessions?quantity=${1}&price=${"price_1MLg6qBqLKhFIhiIBvNN6aBv"}`);
 
     const containerRef = useRef();
 
     const handleSubmit = () => {
         router.push("/request/success");
     }
+
+    const [item, setItem] = useState({
+        quantity: 1,
+        price: "price_1MLg6qBqLKhFIhiIBvNN6aBv",
+    });
+
+    // const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+    // const stripePromise = loadStripe(publishableKey);
+
+    const createCheckOutSession = async () => {
+
+        let stripePromise = null;
+
+        if (!stripePromise) {
+            stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+        }
+
+        try {
+            const stripe = await stripePromise;
+            const checkoutSession = await axios.post('/api/checkout_session', {
+                item: item,
+                headers: {
+                    "Content-Type": 'application/json'
+                  }
+            });
+            const result = await stripe.redirectToCheckout({
+                sessionId: checkoutSession.data.id,
+            });
+
+            if (result.error) {
+                alert(result.error.message);
+            }
+        } catch (err) {
+            console.log(err.response);
+        }
+
+    };
 
     return (
         <div>
@@ -37,35 +79,35 @@ export default function Request() {
                                     required
                                     id="outlined-required"
                                     label="Full name"
-                                    defaultValue="AHMAD HAFIZZUDDIN ZAINI BIN ABQORI AFIQ"
+                                    defaultValue=" "
                                     fullWidth
                                 />
                                 <TextField
                                     required
                                     id="outlined-required"
                                     label="Matric number"
-                                    defaultValue="CB23098"
+                                    defaultValue=" "
                                     fullWidth
                                 />
                                 <TextField
                                     required
                                     id="outlined-required"
                                     label="Phone number"
-                                    defaultValue="0123456789"
+                                    defaultValue=" "
                                     fullWidth
                                 />
                                 <TextField
                                     required
                                     id="outlined-required"
                                     label="Residence room number"
-                                    defaultValue="A-1-24"
+                                    defaultValue=" "
                                     fullWidth
                                 />
                                 <TextField
                                     required
                                     id="outlined-required"
                                     label="Tracking number"
-                                    defaultValue="0123456789"
+                                    defaultValue=" "
                                     fullWidth
                                 />
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -84,7 +126,7 @@ export default function Request() {
                                     required
                                     id="outlined-required"
                                     label="Extra information"
-                                    defaultValue="Parcel is inside A bucket"
+                                    defaultValue=" "
                                     fullWidth
                                 />
                                 {/* <Paper variant="outlined" sx={{ display: "flex", flexDirection: "column", alignItems: "center", py: 10}}>
@@ -93,7 +135,7 @@ export default function Request() {
                                     <input hidden accept="image/*" multiple type="file" />
                                 </Button>
                             </Paper> */}
-                                <Button variant="contained" type="submit" onClick={handleSubmit}>
+                                <Button variant="contained" type="submit" onClick={createCheckOutSession}>
                                     Confirm request
                                 </Button>
                                 <Typography variant="caption">Note :  Every parcel will be charge RM 2.00</Typography>

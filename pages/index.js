@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from "next/router";
-
 import { useState, useEffect, useRef } from 'react';
 import { Inter } from '@next/font/google'
 
@@ -55,6 +54,7 @@ export default function Home() {
     });
   }, []);
 
+// Hello world
   return (
     <div>
       <Box sx={{ mt: 20 }}>
